@@ -6,6 +6,11 @@ from django.utils.text import slugify
 # Create your models here.
 
 
+TYPE_OF_PERSON= (
+     ("M" , "Male"),
+     ('F', 'Female'),
+)
+
 class Profile(models.Model):
   user = models.OneToOneField(User, verbose_name=_("user"), on_delete=models.CASCADE)
   name = models.CharField(_("الاسم :"), max_length=80)
@@ -22,6 +27,7 @@ class Profile(models.Model):
   twitter = models.CharField(max_length=100, null=True, blank=True)
   google = models.CharField(max_length=100, null=True, blank=True)
   specialist_doctor = models.CharField(_("متخصص في؟"), max_length=100,blank=True, null=True )
+  tye_of_person = models.CharField(_("النوع :"),choices=TYPE_OF_PERSON , max_length=50)
   slug = models.SlugField(_("slug"), blank=True, null=True)
 
   def save(self, *args, **kwargs):
@@ -35,7 +41,7 @@ class Profile(models.Model):
         verbose_name_plural = _("Profiles")
 
   def __str__(self):
-        return '%s' %(self.user.username)
+        return  '%s' %(self.user.username)
   
 
 def create_profile(sender, **kwargs):
