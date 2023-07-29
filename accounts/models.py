@@ -18,6 +18,9 @@ class Profile(models.Model):
   doctor = models.CharField(_("دكتور؟"), max_length=50,blank=True, null=True )
   who_i = models.TextField(_("من انا :"), max_length=250, blank=True, null=True)  
   price = models.IntegerField(_("سعر الكشف :"), null=True, blank=True)
+  facebook = models.CharField(max_length=100, null=True, blank=True)
+  twitter = models.CharField(max_length=100, null=True, blank=True)
+  google = models.CharField(max_length=100, null=True, blank=True)
   specialist_doctor = models.CharField(_("متخصص في؟"), max_length=100,blank=True, null=True )
   slug = models.SlugField(_("slug"), blank=True, null=True)
 
