@@ -6,12 +6,37 @@ from django.utils.text import slugify
 # Create your models here.
 
 
-TYPE_OF_PERSON= (
+TYPE_OF_PERSON = (
      ("M" , "Male"),
      ('F', 'Female'),
+  )
+
+
+DOCTOR_IN= (
+     ("جلدية" , "جلدية"),
+     ('أسنان', 'أسنان'),
+     ('نفسي','نفسي'),
+     ('أطفال حديثي الولادة','أطفال حديثي الولادة'),
+     ('مخ و أعصاب','مخ و أعصاب'),
+     ('عظام','عظام'),
+     ('نساء و توليد','نساء و توليد'),
+     ('أنف و أذن و حنجرة','أنف و أذن و حنجرة'),
+     ('قلب و أوعية دموية ','قلب و أوعية دموية'),
+     ('أمراض دم','أمراض دم'),
+     ('أورام','أورام'),
+     ('باطنة','باطنة'),
+     ('تخسيس و تغذية','تخسيس و تغذية'),
+     ('جراحة أطفال','جراحة أطفال'),
+     ('جراحة أورام','جراحة أورام'),
+     ('جراحة أوعية دموية','جراحة أوعية دموية'),
+     ('جراحة تجميل','جراحة تجميل'),
+     ('جراحة سمنة و مناظير','جراحة سمنة و مناظير'),
 )
 
 class Profile(models.Model):
+  
+
+
   user = models.OneToOneField(User, verbose_name=_("user"), on_delete=models.CASCADE)
   name = models.CharField(_("الاسم :"), max_length=80)
   subtitle = models.CharField(_("نبذة عنك"), max_length=300)
@@ -20,7 +45,6 @@ class Profile(models.Model):
   number_phone = models.CharField(_("الهاتف :"), max_length=50)
   working_hours = models.CharField(_("عدد ساعات العمل :"), max_length=50)
   waiting_time  = models.IntegerField(_("مدة الانتظار :"), blank=True, null=True)
-  doctor = models.CharField(_("دكتور؟"), max_length=50,blank=True, null=True )
   who_i = models.TextField(_("من انا :"), max_length=250, blank=True, null=True)  
   price = models.IntegerField(_("سعر الكشف :"), null=True, blank=True)
   facebook = models.CharField(max_length=100, null=True, blank=True)
@@ -28,6 +52,7 @@ class Profile(models.Model):
   google = models.CharField(max_length=100, null=True, blank=True)
   specialist_doctor = models.CharField(_("متخصص في؟"), max_length=100,blank=True, null=True )
   tye_of_person = models.CharField(_("النوع :"),choices=TYPE_OF_PERSON , max_length=50)
+  doctor = models.CharField(_("دكتور؟"),choices=DOCTOR_IN, max_length=50,blank=True, null=True )
   slug = models.SlugField(_("slug"), blank=True, null=True)
 
   def save(self, *args, **kwargs):
