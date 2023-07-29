@@ -33,3 +33,7 @@ def user_login(request):
                form=LogIn_form()     
      form = LogIn_form()
      return render(request, 'user/login.html', {'form':form})
+
+
+def myprofile(request):
+     return render(request, 'user/myprofile.html', {})
