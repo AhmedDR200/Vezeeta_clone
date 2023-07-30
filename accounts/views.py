@@ -26,7 +26,7 @@ def user_login(request):
           form=LogIn_form()
           username = request.POST['username']
           password = request.POST['password']
-          user =authenticate (username=username, password=password )
+          user =authenticate (request, username=username, password=password )
           if user is not None:
                login(request, user)
                return redirect('accounts:doctors_list')
@@ -34,6 +34,28 @@ def user_login(request):
                form=LogIn_form()     
      form = LogIn_form()
      return render(request, 'user/login.html', {'form':form})
+
+
+
+
+
+def signup(request):
+     form = UserCreationForms()
+     if request.method == 'POST':
+          form = UserCreationForms(request.POST)
+          if form.is_valid():
+               form.save()
+               username = form.cleaned_data.get('username')
+               password = form.cleaned_data.get('username')
+               user =authenticate (username=username, password=password )
+               login(request, user)
+               return redirect('accounts:doctors_list')
+
+     else: 
+          form = UserCreationForms()
+               
+     return render(request, 'user/signup.html', {'form':form})
+
 
 
 @login_required(login_url='accounts:login')
