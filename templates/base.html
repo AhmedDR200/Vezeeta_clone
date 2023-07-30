@@ -70,7 +70,7 @@
                                 {% if user.is_authenticated %}
                                 <div class="phone_num d-none d-xl-block"></div>
                                 <div class="d-none d-lg-block">
-                                    <a class="boxed-btn3" href="">قدم نفسك</a>
+                                    <a class="boxed-btn3" href="{% url 'accounts:update_profile' %}">قدم نفسك</a>
                                 </div>
                                 {% else %}
                                 <div class="phone_num d-none d-xl-block">
