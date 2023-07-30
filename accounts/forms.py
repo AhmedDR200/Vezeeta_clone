@@ -26,3 +26,14 @@ class LogIn_form(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password')
+
+
+class UpdateUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+        labels = {
+            'first_name': 'الاسم الأول',
+            'last_name': 'الاسم الأخير',
+            'email': 'البريد الالكتروني',
+        }

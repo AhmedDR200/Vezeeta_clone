@@ -1,8 +1,9 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth.models import User
 from .models import Profile
-from .forms import LogIn_form
+from .forms import LogIn_form , UserCreationForms , UpdateUserForm
 from django.contrib.auth import authenticate , login
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -35,5 +36,19 @@ def user_login(request):
      return render(request, 'user/login.html', {'form':form})
 
 
+@login_required(login_url='accounts:login')
 def myprofile(request):
      return render(request, 'user/myprofile.html', {})
+
+
+
+def update_profile(request):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        if user_form.is_valid():
+            user_form.save()
+            return redirect('accounts:doctors_list')
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+
+    return render(request, 'user/update_profile.html', {'user_form': user_form})

@@ -16,7 +16,7 @@
                                     
                             </div>
                             <div class="jobs_conetent">
-                                <a href="#" ><h4>{{user.firstname}} {{user.lastname}}</h4></a>
+                                <a href="#" ><h4>دكتور {{user.profile.name}}</h4></a>
                                 <div class="links_locat d-flex align-items-center">
                                     <div class="location">
                                         <p> <i class="fa fa-map-marker"></i>مصر , {{user.profile.address}}</p>
@@ -37,13 +37,13 @@
                 
                 <div class="descript_wrap white-bg">
                     <div class="single_wrapp">
-                        <h3>subtitle</h3>
+                        <h3>{{user.profile.subtitle}}</h3>
                     </div>
                     <div class="white-card white-card-inner">
                         <div class="single_wrap" style="margin-top: 10px;">
                             <h4>معلومات عن الدكتور</h4>
                             <ul>
-                                <p>وصف الدكتور</p>
+                                <p>{{user.profile.who_i}}</p>
                             </ul>
                         </div>
                     </div>
